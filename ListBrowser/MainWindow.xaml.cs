@@ -71,15 +71,19 @@ public partial class MainWindow : Window
         }
     }
 
+    private void CopyUrl_Click(object sender, RoutedEventArgs e)
+    {
+        if (UrlListBox.SelectedItem is string url)
+            Clipboard.SetText(url);
+    }
+
     private async void ResetSession_Click(object sender, RoutedEventArgs e)
     {
-        var result = MessageBox.Show(
-            "Cookie・キャッシュ・ログイン情報をすべて削除します。よろしいですか？",
-            "セッションリセット", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-        if (result != MessageBoxResult.OK) return;
+        var dialog = new ConfirmDialog("Cookie・キャッシュ・ログイン情報をすべて削除します。\nよろしいですか？") { Owner = this };
+        if (dialog.ShowDialog() != true) return;
 
         await WebView.CoreWebView2.Profile.ClearBrowsingDataAsync();
-        WebView.Source = null;
+        WebView.CoreWebView2.NavigateToString("<html><body style='background:#4d4d4d;margin:0'></body></html>");
         CurrentUrlText.Text = "URLを選択してください";
         UrlListBox.SelectedItem = null;
     }

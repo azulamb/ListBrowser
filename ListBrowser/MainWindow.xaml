@@ -90,12 +90,17 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock x:Name="CurrentUrlText" Grid.Column="0" Text="URLを選択してください"
                                Foreground="#BDC3C7" FontSize="11" TextTrimming="CharacterEllipsis"
                                VerticalAlignment="Center"/>
-                    <Button Grid.Column="1" Content="セッションリセット" Click="ResetSession_Click"
+                    <Button Grid.Column="1" Content="URLをコピー" Click="CopyUrl_Click"
                             Margin="10,0,0,0" Padding="10,4"
+                            Background="#4d4d4d" Foreground="White"
+                            BorderThickness="1" BorderBrush="#888" Cursor="Hand" FontSize="11"/>
+                    <Button Grid.Column="2" Content="セッションリセット" Click="ResetSession_Click"
+                            Margin="6,0,0,0" Padding="10,4"
                             Background="#c0392b" Foreground="White"
                             BorderThickness="0" Cursor="Hand" FontSize="11"/>
                 </Grid>
